@@ -1,7 +1,6 @@
 package helloo.core.order;
 
 import helloo.core.discount.DiscountPolicy;
-import helloo.core.discount.FixDiscountPolicy;
 import helloo.core.member.Member;
 import helloo.core.member.MemberRepository;
 import helloo.core.member.MemoryMemberRepository;
@@ -12,7 +11,9 @@ public class OrderServiceImpl implements OrderService {
     private final MemberRepository memberRepository = new MemoryMemberRepository();
 
     // 할인정책 끼워넣기
-    private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    // private final DiscountPolicy discountPolicy = new FixDiscountPolicy();
+    private DiscountPolicy discountPolicy;
+
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         // 멤버 찾기
