@@ -5,14 +5,23 @@ import helloo.core.member.Member;
 import helloo.core.member.MemberService;
 import helloo.core.order.Order;
 import helloo.core.order.OrderService;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class OrderApp {
     public static void main(String[] args) {
 
-        AppConfig appConfig = new AppConfig();
+        // AppConfig appConfig = new AppConfig();
 
-        MemberService memberService = appConfig.memberService();
-        OrderService orderService = appConfig.orderService();
+        // MemberService memberService = appConfig.memberService();
+        // OrderService orderService = appConfig.orderService();
+
+
+        // 스프링 빈 등록
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+
+        MemberService memberService = ac.getBean("memberService", MemberService.class);
+        OrderService orderService = ac.getBean("orderService", OrderService.class);
 
         // VIP 회원 생성
         Long memberId = 1l;
